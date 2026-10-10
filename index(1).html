@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LuxeTime | Premium Watches Collection</title>
+<meta name="description" content="Premium wristwatches & smart watches. Cash on delivery. Order instantly on WhatsApp.">
+<meta name="theme-color" content="#07070b">
+<meta property="og:title" content="LuxeTime | Premium Watches Collection">
+<meta property="og:description" content="Luxury quartz classics & smart watches. Order in seconds on WhatsApp.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⌚%3C/text%3E%3C/svg%3E">
+
+<!-- Reveal animations only hide content when JS is running (no-JS visitors still see everything) -->
+<script>document.documentElement.classList.add('js')</script>
+
+<!-- Fonts (display=swap so text shows instantly) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   1. THEME TOKENS
+   ============================================================ */
+:root{
+  --bg:#07070b;
+  --gold:#f5c04a;
+  --gold-2:#ffdf8a;
+  --neon:#00e5ff;
+  --violet:#8a5cff;
+  --green:#25d366;
+  --text:#f2f2f7;
+  --muted:#a3a3b8;
+  --glass:rgba(255,255,255,.06);
+  --glass-border:rgba(255,255,255,.14);
+  --radius:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Poppins',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);
+  overflow-x:hidden;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+section,header{scroll-margin-top:70px}
+.container{width:min(1200px,92%);margin-inline:auto}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* ============================================================
+   2. BACKGROUND ORBS + PARTICLES (depth)
+   ============================================================ */
+.bg-layer{position:fixed;inset:0;z-index:-2;overflow:hidden;
+  background:radial-gradient(1200px 700px at 80% -10%,#1b1430 0%,transparent 60%),
+             radial-gradient(900px 600px at -10% 40%,#10202a 0%,transparent 60%),var(--bg);}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.42;will-change:transform}
+.orb.o1{width:420px;height:420px;background:var(--violet);top:8%;left:-8%;animation:drift 18s ease-in-out infinite}
+.orb.o2{width:360px;height:360px;background:var(--gold);top:45%;right:-8%;opacity:.26;animation:drift 22s ease-in-out infinite reverse}
+.orb.o3{width:300px;height:300px;background:var(--neon);bottom:-5%;left:30%;opacity:.22;animation:drift 26s ease-in-out infinite}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,-50px) scale(1.15)}}
+#particles{position:fixed;inset:0;z-index:-1;pointer-events:none}
+
+/* ============================================================
+   3. GENERIC UI
+   ============================================================ */
+.glass{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-radius:var(--radius);
+}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  padding:.95rem 1.7rem;border-radius:999px;border:0;cursor:pointer;
+  font:600 1rem 'Poppins',sans-serif;color:#06120a;
+  background:linear-gradient(135deg,var(--green),#6dffb0);
+  box-shadow:0 10px 30px rgba(37,211,102,.35);
+  transition:transform .25s,box-shadow .25s;
+}
+.btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 0 30px rgba(37,211,102,.55)}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--glass-border);box-shadow:none}
+.btn.ghost:hover{border-color:var(--gold);color:var(--gold)}
+.badge{
+  display:inline-block;padding:.35rem .9rem;border-radius:999px;font-size:.75rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gold-2);border:1px solid rgba(245,192,74,.4);background:rgba(245,192,74,.08)
+}
+.section{padding:6rem 0}
+.section-head{text-align:center;margin-bottom:3rem}
+.section-head h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);margin:.8rem 0 .5rem;line-height:1.15}
+.section-head p{color:var(--muted);max-width:560px;margin-inline:auto}
+.grad{background:linear-gradient(90deg,var(--gold),var(--gold-2),var(--neon));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---- Scroll reveal (class-driven, bulletproof: no JS lib needed) ---- */
+.js .reveal{
+  opacity:0;transform:translateY(40px);
+  transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);
+  transition-delay:var(--d,0s);
+}
+.js .reveal.in{opacity:1;transform:none}
+/* after the entrance finishes, restore snappy hover transitions */
+.js .reveal.done{transition:opacity .3s,transform .3s,box-shadow .3s,border-color .3s;transition-delay:0s}
+
+/* ============================================================
+   4. NAV
+   ============================================================ */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:.9rem 0;transition:background .3s}
+nav.scrolled{background:rgba(7,7,11,.8);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+nav .container{display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Orbitron',sans-serif;font-weight:800;letter-spacing:.15em;font-size:1.1rem}
+.logo span{color:var(--gold)}
+.nav-links{display:none;gap:2rem;font-size:.92rem;color:var(--muted)}
+.nav-links a:hover{color:var(--gold)}
+@media(min-width:800px){.nav-links{display:flex}}
+
+/* ============================================================
+   5. HERO
+   ============================================================ */
+.hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:7rem 0 4rem;position:relative}
+.hero .container{display:grid;gap:3rem;align-items:center}
+@media(min-width:900px){.hero .container{grid-template-columns:1.05fr 1fr}}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,7vw,5rem);line-height:1.08;margin:1.1rem 0}
+.hero p.sub{color:var(--muted);font-size:1.05rem;max-width:520px;margin-bottom:2rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:1rem}
+.hero-stats{display:flex;gap:2rem;margin-top:2.5rem;flex-wrap:wrap}
+.hero-stats b{display:block;font-family:'Orbitron',sans-serif;font-size:1.4rem;color:var(--gold)}
+.hero-stats small{color:var(--muted)}
+
+/* ---- 3D showcase stage ---- */
+.stage{perspective:1200px;display:grid;place-items:center;min-height:440px;position:relative;will-change:transform}
+.stage::before{ /* glowing ring behind watch */
+  content:"";position:absolute;width:min(440px,80vw);aspect-ratio:1;border-radius:50%;
+  background:conic-gradient(from 0deg,var(--gold),var(--neon),var(--violet),var(--gold));
+  filter:blur(60px);opacity:.36;animation:spin 14s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* mouse-reactive layer (driven by CSS variables set in JS) */
+.stage-inner{
+  transform-style:preserve-3d;
+  transform:rotateY(var(--ry,0deg)) rotateX(var(--rx,0deg));
+  transition:transform .35s ease-out;
+}
+/* CSS floating / rotating layer */
+.watch-3d{position:relative;display:inline-block;transform-style:preserve-3d;animation:float3d 9s ease-in-out infinite;will-change:transform}
+@keyframes float3d{
+  0%,100%{transform:translateY(0) rotateY(-14deg) rotateX(4deg)}
+  25%{transform:translateY(-18px) rotateY(0deg) rotateX(-3deg)}
+  50%{transform:translateY(0) rotateY(14deg) rotateX(4deg)}
+  75%{transform:translateY(-18px) rotateY(0deg) rotateX(-3deg)}
+}
+/* Fixed-size frame: layout never collapses, even if the image is missing/slow */
+.watch-frame{
+  position:relative;width:min(360px,74vw);aspect-ratio:3/4;border-radius:28px;overflow:hidden;
+  background:radial-gradient(circle at 50% 40%,#2a2438 0%,#0e0e16 70%);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 40px 80px rgba(0,0,0,.7),0 0 60px rgba(245,192,74,.25);
+}
+.watch-frame::before{content:"⌚";position:absolute;inset:0;display:grid;place-items:center;font-size:5rem;opacity:.35}
+.watch-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* floating tags: anchored to the frame, always readable */
+.tag3d{
+  position:absolute;z-index:2;padding:.5rem .95rem;font-size:.78rem;font-weight:500;border-radius:14px;white-space:nowrap;
+  background:rgba(10,10,16,.72);border:1px solid rgba(245,192,74,.45);color:var(--gold-2);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+}
+.tag3d.t1{top:9%;left:-12%;transform:translateZ(90px);animation:bob 4s ease-in-out infinite}
+.tag3d.t2{bottom:11%;right:-12%;transform:translateZ(120px);animation:bob 5s ease-in-out infinite reverse}
+@keyframes bob{0%,100%{margin-top:0}50%{margin-top:-12px}}
+@media(max-width:600px){.tag3d.t1{left:-3%}.tag3d.t2{right:-3%}}
+
+/* Images: never show alt text while loading / on error — a neutral placeholder is shown instead */
+img{color:transparent;font-size:0}
+img.broken{display:none}
+
+/* ============================================================
+   6. MARQUEE (urgency strip)
+   ============================================================ */
+.marquee{overflow:hidden;border-block:1px solid var(--glass-border);background:rgba(255,255,255,.03);padding:.9rem 0}
+.marquee-track{display:flex;gap:3rem;white-space:nowrap;animation:scroll 28s linear infinite;width:max-content}
+.marquee span{font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-2)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ============================================================
+   7. COLLECTION
+   ============================================================ */
+.filters{display:flex;justify-content:center;gap:.7rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.chip{padding:.55rem 1.2rem;border-radius:999px;border:1px solid var(--glass-border);background:var(--glass);
+  color:var(--muted);cursor:pointer;font:500 .88rem 'Poppins',sans-serif;transition:.25s}
+.chip.active,.chip:hover{color:#1a1200;background:linear-gradient(135deg,var(--gold),var(--gold-2));border-color:transparent}
+.grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+/* Cards use a plain translucent surface (no backdrop-filter) so 3D tilt works and scrolling stays fast */
+.card{
+  padding:1rem;display:flex;flex-direction:column;border-radius:var(--radius);
+  background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
+  border:1px solid var(--glass-border);transform-style:preserve-3d;
+  transition:box-shadow .3s,border-color .3s;
+}
+.card:hover{border-color:rgba(245,192,74,.55);box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 40px rgba(245,192,74,.15)}
+.img-wrap{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/5;
+  background:radial-gradient(circle at 50% 40%,#232033,#0c0c12 75%);transform:translateZ(40px)}
+.img-wrap::before{content:"⌚";position:absolute;inset:0;display:grid;place-items:center;font-size:3.5rem;opacity:.3}
+.img-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.card:hover .img-wrap img{transform:scale(1.07)}
+.stock{position:absolute;top:.7rem;left:.7rem;z-index:2;font-size:.7rem;padding:.25rem .7rem;border-radius:999px;
+  background:rgba(255,60,80,.92);color:#fff;font-weight:600;letter-spacing:.05em;animation:blink 2s infinite}
+@keyframes blink{50%{opacity:.6}}
+.cat{font-size:.72rem;letter-spacing:.18em;color:var(--neon);text-transform:uppercase;margin-top:1rem;transform:translateZ(30px)}
+.card h3{font-size:1.05rem;margin:.2rem 0;line-height:1.35;transform:translateZ(30px)}
+.card .desc{font-size:.85rem;color:var(--muted);flex:1;transform:translateZ(20px)}
+.price-row{display:flex;align-items:baseline;flex-wrap:wrap;gap:.2rem .6rem;margin:.9rem 0;transform:translateZ(30px)}
+.price{font-family:'Orbitron',sans-serif;font-size:1.2rem;color:var(--gold)}
+.old{color:var(--muted);text-decoration:line-through;font-size:.85rem}
+.card .btn{width:100%;padding:.8rem;font-size:.92rem;transform:translateZ(40px)}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:2rem}
+
+/* ============================================================
+   8. WHY US
+   ============================================================ */
+.features{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.feature{padding:2rem 1.5rem;text-align:center}
+.feature:hover{transform:translateY(-8px)}
+.js .feature.reveal.in:hover{transform:translateY(-8px)}
+.feature .ico{
+  width:64px;height:64px;margin:0 auto 1.2rem;display:grid;place-items:center;font-size:1.8rem;border-radius:18px;
+  background:linear-gradient(135deg,rgba(245,192,74,.2),rgba(0,229,255,.15));border:1px solid var(--glass-border);
+  box-shadow:0 0 30px rgba(0,229,255,.18)}
+.feature h4{margin-bottom:.4rem}
+.feature p{color:var(--muted);font-size:.9rem}
+
+.cta-band{text-align:center;padding:4rem 1.5rem;margin-top:5rem}
+.cta-band h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4.5vw,2.8rem);margin-bottom:.8rem;line-height:1.2}
+.cta-band p{color:var(--muted);margin:0 auto 1.8rem;max-width:520px}
+
+/* ============================================================
+   9. FOOTER
+   ============================================================ */
+footer{border-top:1px solid var(--glass-border);padding:2.5rem 0 6rem;color:var(--muted);font-size:.88rem}
+footer .container{display:flex;flex-direction:column;gap:1.2rem;align-items:center;text-align:center}
+.socials{display:flex;gap:1rem}
+.socials a{width:42px;height:42px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--glass-border);transition:.25s}
+.socials a:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
+.socials svg{width:18px;height:18px;fill:currentColor}
+
+/* ============================================================
+   10. WHATSAPP FAB (sticky + pulsing)
+   ============================================================ */
+.fab{
+  position:fixed;right:max(20px,env(safe-area-inset-right));bottom:max(20px,env(safe-area-inset-bottom));z-index:99;
+  width:64px;height:64px;border-radius:50%;background:var(--green);display:grid;place-items:center;
+  box-shadow:0 10px 30px rgba(37,211,102,.5);animation:pulse 2s infinite;transition:transform .25s;
+}
+.fab:hover{transform:scale(1.12)}
+.fab svg{width:34px;height:34px;fill:#fff}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(37,211,102,.7),0 10px 30px rgba(37,211,102,.5)}
+  70%{box-shadow:0 0 0 22px rgba(37,211,102,0),0 10px 30px rgba(37,211,102,.5)}
+  100%{box-shadow:0 0 0 0 rgba(37,211,102,0),0 10px 30px rgba(37,211,102,.5)}
+}
+.fab-label{position:fixed;right:96px;bottom:34px;z-index:98;padding:.45rem .9rem;font-size:.8rem;border-radius:12px;
+  background:rgba(0,0,0,.75);border:1px solid var(--glass-border);animation:bob 3s ease-in-out infinite;transition:opacity .4s}
+.fab-label.hide{opacity:0;pointer-events:none}
+@media(max-width:600px){.fab-label{display:none}}
+
+/* Respect users who prefer reduced motion: keep everything visible, stop movement */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background depth layers -->
+<div class="bg-layer" aria-hidden="true">
+  <div class="orb o1" data-depth="0.15"></div>
+  <div class="orb o2" data-depth="0.3"></div>
+  <div class="orb o3" data-depth="0.2"></div>
+</div>
+<canvas id="particles" aria-hidden="true"></canvas>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <a href="#top" class="logo" aria-label="LuxeTime home">LUXE<span>TIME</span></a>
+    <div class="nav-links">
+      <a href="#collection">Collection</a>
+      <a href="#why">Why Us</a>
+      <a href="#contact">Order</a>
+    </div>
+    <a class="btn" style="padding:.6rem 1.2rem;font-size:.85rem" data-wa="Hi! I'd like to know more about your watches.">Chat Now</a>
+  </div>
+</nav>
+
+<!-- ======================= HERO ======================= -->
+<header class="hero" id="top">
+  <div class="container">
+    <div class="hero-text">
+      <span class="badge reveal">✦ Exclusive Collection · Limited Stock</span>
+      <h1 class="reveal">Time, <span class="grad">Redefined</span><br>On Your Wrist.</h1>
+      <p class="sub reveal">Luxury quartz classics and next-gen smart watches — hand-picked, box-packed, and delivered to your door. Order in seconds on WhatsApp.</p>
+      <div class="hero-cta reveal">
+        <a class="btn" data-wa="Hi! I want to order the Rodha Gold & Silver watch. Is it available?">Order on WhatsApp ➜</a>
+        <a class="btn ghost" href="#collection">Explore Collection</a>
+      </div>
+      <div class="hero-stats reveal">
+        <div><b>500+</b><small>Happy Customers</small></div>
+        <div><b>COD</b><small>Cash on Delivery</small></div>
+        <div><b>24/7</b><small>WhatsApp Support</small></div>
+      </div>
+    </div>
+
+    <!-- 3D animated flagship -->
+    <div class="stage" id="stage">
+      <div class="stage-inner" id="stageInner">
+        <div class="watch-3d">
+          <div class="watch-frame">
+            <!-- FLAGSHIP: name your first image watch-01-rodha.jpg -->
+            <img src="watch-01-rodha.jpg" alt="Rodha gold and silver quartz watch" width="720" height="960"
+                 fetchpriority="high" decoding="async">
+          </div>
+          <div class="tag3d t1">★ Flagship Pick</div>
+          <div class="tag3d t2">🔥 Only few left</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Urgency marquee -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Limited Stock</span><span>✦</span><span>Exclusive Collection</span><span>✦</span><span>Cash On Delivery</span><span>✦</span><span>Free Gift Box</span><span>✦</span><span>Fast Shipping</span><span>✦</span>
+    <span>Limited Stock</span><span>✦</span><span>Exclusive Collection</span><span>✦</span><span>Cash On Delivery</span><span>✦</span><span>Free Gift Box</span><span>✦</span><span>Fast Shipping</span><span>✦</span>
+  </div>
+</div>
+
+<!-- ======================= COLLECTION ======================= -->
+<section class="section" id="collection">
+  <div class="container">
+    <div class="section-head">
+      <span class="badge reveal">The Collection</span>
+      <h2 class="reveal">Choose Your <span class="grad">Signature</span></h2>
+      <p class="reveal">Tap "Chat to Buy" and your selected watch is sent to us instantly — no forms, no waiting.</p>
+    </div>
+
+    <div class="filters reveal" id="filters" role="group" aria-label="Filter watches">
+      <button class="chip active" data-f="all" aria-pressed="true">All</button>
+      <button class="chip" data-f="Classic" aria-pressed="false">Classic</button>
+      <button class="chip" data-f="Smart" aria-pressed="false">Smart Watches</button>
+      <button class="chip" data-f="Couple" aria-pressed="false">Couple Set</button>
+    </div>
+
+    <div class="grid" id="grid"><!-- cards injected by JS --></div>
+  </div>
+</section>
+
+<!-- ======================= WHY US ======================= -->
+<section class="section" id="why">
+  <div class="container">
+    <div class="section-head">
+      <span class="badge reveal">Why Buy From Us</span>
+      <h2 class="reveal">Luxury You Can <span class="grad">Trust</span></h2>
+      <p class="reveal">Every watch is inspected, gift-boxed and backed by real human support.</p>
+    </div>
+    <div class="features">
+      <div class="feature glass reveal"><div class="ico">💎</div><h4>Premium Quality</h4><p>Stainless-steel builds, sapphire-style finish and quality movements that last.</p></div>
+      <div class="feature glass reveal"><div class="ico">🚚</div><h4>Fast Shipping</h4><p>Dispatched quickly with tracking, delivered safely to your doorstep.</p></div>
+      <div class="feature glass reveal"><div class="ico">🔒</div><h4>Secure Payment</h4><p>Cash on delivery or trusted transfer — you only pay when you're confident.</p></div>
+      <div class="feature glass reveal"><div class="ico">🎁</div><h4>Gift-Ready Box</h4><p>Every order arrives in a premium box — perfect for birthdays &amp; weddings.</p></div>
+    </div>
+
+    <div class="cta-band glass reveal" id="contact">
+      <h2>Don't Miss Your <span class="grad">Watch</span></h2>
+      <p>Stock is limited and moves fast. Message us now and we'll confirm your order in minutes.</p>
+      <a class="btn" data-wa="Hi! I'd like to place an order. Please share the available watches.">💬 Start Chat on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FOOTER ======================= -->
+<footer>
+  <div class="container">
+    <div class="logo">LUXE<span>TIME</span></div>
+    <div class="socials">
+      <!-- Replace each # with your real profile link -->
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H7zm5 3.5A4.5 4.5 0 1112 16.5 4.5 4.5 0 0112 7.5zm0 2A2.5 2.5 0 1012 14.5 2.5 2.5 0 0012 9.5zM17.5 6a1 1 0 110 2 1 1 0 010-2z"/></svg></a>
+      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.5 1.6-1.5h1.7V4.4c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1v2.4H7.7V14h2.7v8h3.1z"/></svg></a>
+      <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.5 3a5.5 5.5 0 004.3 4.8v3a8.5 8.5 0 01-4.3-1.3v6.2a6 6 0 11-6-6c.3 0 .6 0 .9.1v3.1a3 3 0 102.1 2.8V3h3z"/></svg></a>
+      <a href="#" data-wa="Hi!" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg></a>
+    </div>
+    <p>© <span id="yr">2026</span> LuxeTime Watches. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Sticky pulsing WhatsApp FAB -->
+<span class="fab-label" id="fabLabel">Need help? Chat with us 👋</span>
+<a class="fab" data-wa="Hi! I'm interested in your watches. Can you help me?" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>
+</a>
+
+<!-- Libraries (deferred so they never block first paint). Page still works if they fail to load. -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  'use strict';
+
+  /* ============================================================
+     CONFIG — EDIT THESE
+     ============================================================ */
+  // WhatsApp number: country code + number, digits only, no "+" (Pakistan example: 923001234567)
+  var WHATSAPP_NUMBER = "923001234567";
+  var CURRENCY = "Rs.";
+
+  /* ============================================================
+     PRODUCT DATA — edit names / prices / image file names
+     ============================================================ */
+  var products = [
+    { img:"watch-01-rodha.jpg",            name:"Rodha Gold & Silver Quartz",     cat:"Classic", price:3499, old:5999,  desc:"Black dial, two-tone gold & steel bracelet, luminous markers." },
+    { img:"watch-02-peje-x12.jpg",         name:'PEJE X12 Smart Watch',           cat:"Smart",   price:4999, old:7999,  desc:'1.85" HD display, heart-rate & exercise tracking, IP67.' },
+    { img:"watch-03-senbono-s9.jpg",       name:"Senbono S9 Rugged Sports",       cat:"Smart",   price:5499, old:8499,  desc:"Tough sports build, calling, 100+ modes, IP67 waterproof." },
+    { img:"watch-04-gwenland.jpg",         name:'Gwenland 1.69" Smart Watch',     cat:"Smart",   price:4499, old:6999,  desc:"Bright HD screen, Bluetooth calling, long battery life." },
+    { img:"watch-05-peje-round.jpg",       name:"PEJE Round Chrono Smart",        cat:"Smart",   price:5999, old:8999,  desc:'1.28" round display, 100+ sport modes, answer/call.' },
+    { img:"watch-06-senbono-l81.jpg",      name:"Senbono L81 Pro Smart",          cat:"Smart",   price:5799, old:8799,  desc:'1.83" HD screen, rugged frame, Bluetooth calling.' },
+    { img:"watch-07-naviforce-green.jpg",  name:"Naviforce Green Dual-Display",   cat:"Classic", price:6499, old:9999,  desc:"Analog + digital, tachymeter bezel, soft leather strap." },
+    { img:"watch-08-curren-black-gold.jpg",name:"Curren Black & Gold Day-Date",   cat:"Classic", price:4299, old:6499,  desc:"Crystal markers, day-date window, comes with link tool." },
+    { img:"watch-09-bestevin-blue.jpg",    name:"Bestevin Blue Textured Steel",   cat:"Classic", price:3999, old:5999,  desc:"Textured blue dial, brushed steel bracelet, minimalist." },
+    { img:"watch-10-blue-gold.jpg",        name:"Blue Dial Two-Tone Luxe",        cat:"Classic", price:3799, old:5799,  desc:"Royal blue dial, gold roman numerals, pyramid-link strap." },
+    { img:"watch-11-naviforce-chrono.jpg", name:"Naviforce Gold Chronograph",     cat:"Classic", price:6999, old:10499, desc:"Champagne dial, tri-subdial chrono look, water resistant." },
+    { img:"watch-12-curren-box.jpg",       name:"Curren Diamond Dial Gift Set",   cat:"Classic", price:4599, old:6799,  desc:"Black sunray dial, gold bezel, premium box + tool." },
+    { img:"watch-13-zuprivo-couple.jpg",   name:"Zuprivo Couple Watch Set",       cat:"Couple",  price:6999, old:11999, desc:"His & Hers matching pair in a luxury gift box." }
+  ];
+
+  /* ============================================================
+     HELPERS
+     ============================================================ */
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var esc = function (s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  };
+  var fmt = function (n) { return CURRENCY + ' ' + Number(n).toLocaleString('en-US'); };
+
+  if (/^9230012345\d\d$/.test(WHATSAPP_NUMBER) || WHATSAPP_NUMBER === "923001234567") {
+    console.warn('[LuxeTime] WHATSAPP_NUMBER is still the placeholder. Set your real number before publishing.');
+  }
+
+  /* ============================================================
+     WHATSAPP LINKS — any element with data-wa="message"
+     ============================================================ */
+  function waLink(msg) {
+    return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
+  }
+  function wireWhatsApp(root) {
+    $$('[data-wa]', root).forEach(function (el) {
+      el.setAttribute('href', waLink(el.getAttribute('data-wa')));
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener noreferrer');
+    });
+  }
+
+  /* ============================================================
+     IMAGE FALLBACKS — if a file is missing, hide <img> and the placeholder shows
+     ============================================================ */
+  function guardImage(img) {
+    var fail = function () { img.classList.add('broken'); };
+    img.addEventListener('error', fail);
+    if (img.complete && img.naturalWidth === 0 && img.getAttribute('src')) fail();
+  }
+
+  /* ============================================================
+     SCROLL REVEAL (IntersectionObserver, staggered)
+     Replaces GSAP "from" tweens, which caused the missing-cards bug.
+     ============================================================ */
+  var io = null;
+  if ('IntersectionObserver' in window) {
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        el.classList.add('in');
+        io.unobserve(el);
+        setTimeout(function () { el.classList.add('done'); }, 1300);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  }
+  function reveal(el) {
+    if (!io) { el.classList.add('in', 'done'); return; } // no IO support: just show everything
+    io.observe(el);
+  }
+  // stagger siblings: each .reveal inside the same parent gets a slightly later delay
+  function stagger(list) {
+    var counts = new Map();
+    list.forEach(function (el) {
+      var p = el.parentElement, i = counts.get(p) || 0;
+      counts.set(p, i + 1);
+      el.style.setProperty('--d', Math.min(i * 0.1, 0.5) + 's');
+    });
+  }
+  var staticReveals = $$('.reveal');
+  stagger(staticReveals);
+  staticReveals.forEach(reveal);
+
+  /* ============================================================
+     PRODUCT CARDS
+     ============================================================ */
+  var grid = $('#grid');
+  function renderProducts(filter) {
+    var list = products.filter(function (p) { return filter === 'all' || p.cat === filter; });
+    if (!list.length) { grid.innerHTML = '<p class="empty">No watches in this category right now.</p>'; return; }
+
+    grid.innerHTML = list.map(function (p, i) {
+      var msg = 'Hi! I want to order: ' + p.name + ' (' + fmt(p.price) + '). Is it in stock?';
+      return '' +
+      '<article class="card reveal" style="--d:' + ((i % 4) * 0.08).toFixed(2) + 's">' +
+        '<div class="img-wrap">' +
+          '<img src="' + esc(p.img) + '" alt="' + esc(p.name) + '" width="600" height="750" loading="lazy" decoding="async">' +
+          '<span class="stock">Limited Stock</span>' +
+        '</div>' +
+        '<div class="cat">' + esc(p.cat) + '</div>' +
+        '<h3>' + esc(p.name) + '</h3>' +
+        '<p class="desc">' + esc(p.desc) + '</p>' +
+        '<div class="price-row"><span class="price">' + fmt(p.price) + '</span><span class="old">' + fmt(p.old) + '</span></div>' +
+        '<a class="btn" data-wa="' + esc(msg) + '">💬 Chat to Buy</a>' +
+      '</article>';
+    }).join('');
+
+    wireWhatsApp(grid);
+    var cards = $$('.card', grid);
+    cards.forEach(function (c) { guardImage($('img', c)); reveal(c); });
+
+    // 3D tilt only where a real mouse exists (touch screens skip it: smoother scrolling)
+    if (canHover && !reduceMotion && window.VanillaTilt) {
+      window.VanillaTilt.init(cards, { max: 12, speed: 500, glare: true, 'max-glare': 0.22, perspective: 1000, scale: 1.03 });
+    }
+  }
+
+  $('#filters').addEventListener('click', function (e) {
+    var b = e.target.closest('.chip'); if (!b) return;
+    $$('.chip').forEach(function (c) { c.classList.remove('active'); c.setAttribute('aria-pressed', 'false'); });
+    b.classList.add('active'); b.setAttribute('aria-pressed', 'true');
+    // clean up old tilt listeners before replacing the cards
+    $$('.card', grid).forEach(function (c) { if (c.vanillaTilt) c.vanillaTilt.destroy(); });
+    renderProducts(b.getAttribute('data-f'));
+  });
+
+  /* ============================================================
+     HERO: mouse-reactive 3D (CSS variables) on top of the CSS float animation
+     ============================================================ */
+  guardImage($('.watch-frame img'));
+  var stage = $('#stage'), inner = $('#stageInner');
+  if (canHover && !reduceMotion) {
+    stage.addEventListener('mousemove', function (e) {
+      var r = stage.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5;
+      var y = (e.clientY - r.top) / r.height - 0.5;
+      inner.style.setProperty('--ry', (x * 18).toFixed(1) + 'deg');
+      inner.style.setProperty('--rx', (-y * 14).toFixed(1) + 'deg');
+    });
+    stage.addEventListener('mouseleave', function () {
+      inner.style.setProperty('--ry', '0deg');
+      inner.style.setProperty('--rx', '0deg');
+    });
+  }
+
+  /* ============================================================
+     PARALLAX (GSAP ScrollTrigger) — optional enhancement, safely skipped if the CDN fails
+     ============================================================ */
+  if (window.gsap && window.ScrollTrigger && !reduceMotion) {
+    gsap.registerPlugin(ScrollTrigger);
+    $$('.orb').forEach(function (o) {
+      var depth = parseFloat(o.getAttribute('data-depth')) || 0.2;
+      gsap.to(o, { y: function () { return -window.innerHeight * depth * 3; }, ease: 'none',
+        scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 1 } });
+    });
+    gsap.to('#stage', { y: -70, scale: 0.93, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.to('.hero-text', { y: -30, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  }
+
+  /* ============================================================
+     PARTICLES (lightweight canvas; pauses when tab hidden; off for reduced motion)
+     ============================================================ */
+  (function particles() {
+    var c = $('#particles');
+    if (reduceMotion || !c.getContext) { c.style.display = 'none'; return; }
+    var ctx = c.getContext('2d'), w, h, dots = [], raf = null;
+    function make() {
+      return { x: Math.random() * w, y: Math.random() * h, r: Math.random() * 1.8 + 0.4,
+               vx: (Math.random() - 0.5) * 0.25, vy: -(Math.random() * 0.4 + 0.1),
+               col: Math.random() > 0.5 ? '245,192,74' : '0,229,255', a: Math.random() * 0.6 + 0.2 };
+    }
+    function resize() {
+      w = c.width = window.innerWidth; h = c.height = window.innerHeight;
+      var n = Math.min(55, Math.floor(w / 24));
+      dots = []; for (var i = 0; i < n; i++) dots.push(make());
+    }
+    function tick() {
+      ctx.clearRect(0, 0, w, h);
+      for (var i = 0; i < dots.length; i++) {
+        var d = dots[i]; d.x += d.vx; d.y += d.vy;
+        if (d.y < -5) { d.y = h + 5; d.x = Math.random() * w; }
+        ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, 6.283);
+        ctx.fillStyle = 'rgba(' + d.col + ',' + d.a + ')'; ctx.fill();
+      }
+      raf = requestAnimationFrame(tick);
+    }
+    window.addEventListener('resize', resize);
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) { cancelAnimationFrame(raf); raf = null; } else if (!raf) tick();
+    });
+    resize(); tick();
+  })();
+
+  /* ============================================================
+     MISC
+     ============================================================ */
+  var nav = $('#nav'), fabLabel = $('#fabLabel');
+  function onScroll() {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    if (window.scrollY > 600) fabLabel.classList.add('hide'); // keep label from nagging after a while
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  $('#yr').textContent = new Date().getFullYear();
+
+  wireWhatsApp(document);
+  renderProducts('all');
+});
+</script>
+</body>
+</html>
